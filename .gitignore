@@ -1,0 +1,16 @@
+# WordPress
+*.log
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

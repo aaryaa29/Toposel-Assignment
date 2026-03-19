@@ -1,0 +1,306 @@
+/*
+Theme Name: ShopCo Mobile
+Description: Mobile-first WooCommerce theme – Toposel Assignment
+Version: 1.0
+Requires PHP: 7.4
+License: GPL-2.0-or-later
+*/
+
+/* Fonts */
+@font-face {
+  font-family: 'Integral CF';
+  src: url('fonts/integralcf-bold.woff2') format('woff2'),
+       url('fonts/integralcf-bold.woff')  format('woff'),
+       url('fonts/integralcf-bold.ttf')   format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('fonts/Satoshi-Regular.woff2') format('woff2'),
+       url('fonts/Satoshi-Regular.woff')  format('woff'),
+       url('fonts/Satoshi-Regular.ttf')   format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('fonts/Satoshi-Medium.woff2') format('woff2'),
+       url('fonts/Satoshi-Medium.woff')  format('woff'),
+       url('fonts/Satoshi-Medium.ttf')   format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('fonts/Satoshi-Bold.woff2') format('woff2'),
+       url('fonts/Satoshi-Bold.woff')  format('woff'),
+       url('fonts/Satoshi-Bold.ttf')   format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'Satoshi', sans-serif;
+  color: #000;
+  background: #fff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+a   { text-decoration: none; color: inherit; }
+img { max-width: 100%; height: auto; display: block; }
+
+
+/* Announcement bar */
+.announcement-bar {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 9px 16px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.announcement-bar a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+
+/* Header */
+.site-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: #fff;
+}
+.header-menu-icon     { margin-right: 12px; }
+.header-menu-icon img { width: 24px; height: 24px; }
+
+.site-logo {
+  font-family: 'Integral CF', sans-serif;
+  font-size: 25.2px;
+  font-weight: 700;
+  line-height: 1;
+  margin-right: auto;
+}
+.site-logo a { color: #000; }
+
+.header-icons     { display: flex; align-items: center; gap: 14px; }
+.header-icons img { width: 24px; height: 24px; }
+
+
+/* Hero */
+.hero-section {
+  background: #F2F0F1;
+  padding: 40px 16px 0;
+}
+.hero-title {
+  font-family: 'Integral CF', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 34px;
+  margin-bottom: 20px;
+}
+.hero-subtitle {
+  font-size: 14px;
+  color: rgba(0,0,0,.6);
+  line-height: 20px;
+  margin-bottom: 24px;
+}
+.hero-btn {
+  display: block;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 16px;
+  border-radius: 62px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+.stat-item      { flex: 0 0 auto; padding: 0 20px; }
+.stat-item-full { width: 100%; margin-top: 12px; }
+.stat-divider   { width: 1px; background: rgba(0,0,0,.1); align-self: stretch; }
+.stat-value     { font-size: 24px; font-weight: 700; }
+.stat-label     { font-size: 12px; color: rgba(0,0,0,.6); white-space: nowrap; }
+
+.hero-image {
+  position: relative;
+  min-height: 448px;
+  overflow: hidden;
+}
+.hero-image > img:first-child {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.star-big {
+  position: absolute;
+  right: 28px; top: 48px;
+  width: 76px; height: 76px;
+  animation: spin 4s linear infinite;
+}
+.star-small {
+  position: absolute;
+  left: 28px; top: 144px;
+  width: 44px; height: 44px;
+  animation: spin 3s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* Brands bar */
+.brands-bar {
+  background: #000;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 25px 16px;
+}
+.brands-bar img {
+  height: 23px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+
+/* Products */
+.product-section {
+  padding: 50px 16px;
+  text-align: center;
+}
+.section-heading {
+  font-family: 'Integral CF', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 36px;
+  margin-bottom: 32px;
+}
+
+.products-grid {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.products-grid::-webkit-scrollbar { display: none; }
+
+.product-card {
+  min-width: calc(50% - 6px);
+  max-width: calc(50% - 6px);
+  flex-shrink: 0;
+  text-align: left;
+  scroll-snap-align: start;
+}
+.product-image {
+  background: #F0EEED;
+  border-radius: 13px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 13px;
+}
+.product-title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+.product-rating .stars  { color: #FFC633; font-size: 12px; letter-spacing: 1.5px; }
+.rating-number          { font-size: 11px; color: rgba(0,0,0,.6); }
+
+/* WooCommerce price */
+.product-price-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.product-price-row .price {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.product-price-row .price ins { text-decoration: none; order: -1; }
+.product-price-row .price del .woocommerce-Price-amount {
+  color: rgba(0,0,0,.3);
+  font-size: 18px;
+}
+.product-price-row .woocommerce-Price-amount {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.discount-badge {
+  background: rgba(255,51,51,.1);
+  color: #FF3333;
+  padding: 4px 10px;
+  border-radius: 62px;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.view-all-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,.1);
+  padding: 16px;
+  border-radius: 62px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+}
+
+.no-products {
+  color: rgba(0,0,0,.4);
+  font-size: 14px;
+}
+
+
+/* Hide WP admin bar in mobile preview */
+#wpadminbar { display: none !important; }
+html { margin-top: 0 !important; }
