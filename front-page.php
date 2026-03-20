@@ -92,7 +92,8 @@ if ( ! $hero_img_url ) {
     <?php
     $args = array(
         'post_type'      => 'product',
-        'posts_per_page' => 4,
+        'posts_per_page' => 2,
+        'offset'         => 2,
         'post_status'    => 'publish',
     );
     if ( $arrivals_cat ) {
