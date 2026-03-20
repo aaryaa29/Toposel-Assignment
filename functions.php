@@ -88,12 +88,39 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
                 'return_format' => 'array',
             ),
             array(
-                'key'           => 'field_brand_logos',
-                'label'         => 'Brand Logos',
-                'name'          => 'brand_logos',
-                'type'          => 'gallery',
+                'key'           => 'field_brand_logo_1',
+                'label'         => 'Brand Logo 1',
+                'name'          => 'brand_logo_1',
+                'type'          => 'image',
                 'return_format' => 'url',
-                'insert'        => 'append',
+            ),
+            array(
+                'key'           => 'field_brand_logo_2',
+                'label'         => 'Brand Logo 2',
+                'name'          => 'brand_logo_2',
+                'type'          => 'image',
+                'return_format' => 'url',
+            ),
+            array(
+                'key'           => 'field_brand_logo_3',
+                'label'         => 'Brand Logo 3',
+                'name'          => 'brand_logo_3',
+                'type'          => 'image',
+                'return_format' => 'url',
+            ),
+            array(
+                'key'           => 'field_brand_logo_4',
+                'label'         => 'Brand Logo 4',
+                'name'          => 'brand_logo_4',
+                'type'          => 'image',
+                'return_format' => 'url',
+            ),
+            array(
+                'key'           => 'field_brand_logo_5',
+                'label'         => 'Brand Logo 5',
+                'name'          => 'brand_logo_5',
+                'type'          => 'image',
+                'return_format' => 'url',
             ),
             array(
                 'key'           => 'field_new_arrivals_category',
@@ -263,9 +290,19 @@ function shopco_auto_setup() {
         if ( $hero ) update_field( 'hero_image', $hero, $home_id );
 
         // Brand logos
-        $logo_files = array( 'versace-logo.svg', 'zara-logo.svg', 'gucci-logo.svg', 'prada-logo.svg', 'calvin-klein-logo.svg' );
-        $logo_ids   = array_filter( array_map( 'shopco_import_asset', $logo_files ) );
-        if ( $logo_ids ) update_field( 'brand_logos', $logo_ids, $home_id );
+        $logo_files = array(
+            'brand_logo_1' => 'versace-logo.svg',
+            'brand_logo_2' => 'zara-logo.svg',
+            'brand_logo_3' => 'gucci-logo.svg',
+            'brand_logo_4' => 'prada-logo.svg',
+            'brand_logo_5' => 'calvin-klein-logo.svg',
+        );
+        foreach ( $logo_files as $field_name => $file ) {
+            $logo_id = shopco_import_asset( $file );
+            if ( $logo_id && ! get_field( $field_name, $home_id ) ) {
+                update_field( $field_name, $logo_id, $home_id );
+            }
+        }
     }
 }
 add_action( 'after_switch_theme', 'shopco_auto_setup' );

@@ -13,7 +13,6 @@ $hero_subheading  = get_field( 'hero_subheading' )  ?: 'Browse through our diver
 $hero_button_text = get_field( 'hero_button_text' ) ?: 'Shop Now';
 $hero_button_link = get_field( 'hero_button_link' ) ?: ( function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : '#' );
 $hero_image       = get_field( 'hero_image' );
-$brand_logos      = get_field( 'brand_logos' );
 $arrivals_cat     = get_field( 'new_arrivals_category' );
 
 // Resolve hero image URL (ACF can return id | array | url)
@@ -60,25 +59,28 @@ if ( ! $hero_img_url ) {
 
 <!-- Brands -->
 <section class="brands-bar">
-<?php if ( ! empty( $brand_logos ) ) : ?>
-    <?php foreach ( $brand_logos as $logo ) :
-        if ( is_array( $logo ) )       $src = $logo['url'];
-        elseif ( is_numeric( $logo ) ) $src = wp_get_attachment_url( $logo );
-        else                           $src = $logo;
-    ?>
-        <img src="<?php echo esc_url( $src ); ?>" alt="Brand">
-    <?php endforeach; ?>
-<?php else :
-    $defaults = array(
-        'versace-logo.svg'      => 'Versace',
-        'zara-logo.svg'         => 'Zara',
-        'gucci-logo.svg'        => 'Gucci',
-        'prada-logo.svg'        => 'Prada',
-        'calvin-klein-logo.svg' => 'Calvin Klein',
-    );
-    foreach ( $defaults as $file => $name ) : ?>
-        <img src="<?php echo get_template_directory_uri(); ?>/img/<?php echo $file; ?>" alt="<?php echo esc_attr( $name ); ?>">
-    <?php endforeach; ?>
+<?php 
+    $logos_found = false;
+    for ( $i = 1; $i <= 5; $i++ ) {
+        $logo_field = get_field( "brand_logo_{$i}" );
+        if ( $logo_field ) {
+            $logos_found = true;
+            $src = is_array( $logo_field ) ? $logo_field['url'] : ( is_numeric( $logo_field ) ? wp_get_attachment_url( $logo_field ) : $logo_field );
+            echo '<img src="' . esc_url( $src ) . '" alt="Brand Logo ' . $i . '">';
+        }
+    }
+
+    if ( ! $logos_found ) :
+        $defaults = array(
+            'versace-logo.svg'      => 'Versace',
+            'zara-logo.svg'         => 'Zara',
+            'gucci-logo.svg'        => 'Gucci',
+            'prada-logo.svg'        => 'Prada',
+            'calvin-klein-logo.svg' => 'Calvin Klein',
+        );
+        foreach ( $defaults as $file => $name ) : ?>
+            <img src="<?php echo get_template_directory_uri(); ?>/img/<?php echo $file; ?>" alt="<?php echo esc_attr( $name ); ?>">
+        <?php endforeach; ?>
 <?php endif; ?>
 </section>
 
