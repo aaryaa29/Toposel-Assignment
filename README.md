@@ -15,11 +15,7 @@ Replicates the mobile homepage of [this Figma design](https://www.figma.com/desi
 | 4 | Brand logos strip | ACF gallery (upload/remove) |
 | 5 | New Arrivals product cards | WooCommerce + ACF category picker |
 
-<<<<<<< Updated upstream
 All text, images, and product data are editable from the WordPress admin 
-=======
-All text, images, and product data are editable from the WordPress admin
->>>>>>> Stashed changes
 
 ---
 
